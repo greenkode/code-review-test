@@ -12,3 +12,8 @@ that will transfer money from one bank account to the other.
 * from 0 to 100,000 (no fee)
 * from 100 to 500,000 (N 50)
 * from 500,000 and above (N 100)
+
+4. KYC Rules
+* KYC1 accounts an only send or receive maximum of 30,000
+* KYC2 accounts an only send or receive maximum of 100,000
+* KYC3 accounts have no limits
