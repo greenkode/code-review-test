@@ -13,12 +13,12 @@ public class MoneyTransferService {
     public SendMoneyTransaction transferMoney(String fromNumber, String toNumber) {
 
         BankAccount from = repository.getAccountByName(fromNumber);
-        if(from == null || from.getAccountBlacklisted().equals("true")) {
+        if(from == null || from.getAccountBlacklisted().equals("Y")) {
             return null;
         }
 
         BankAccount to = repository.getAccountByName(fromNumber);
-        if(to == null || to.getAccountBlacklisted().equals("true")) {
+        if(to == null || to.getAccountBlacklisted().equals("Y")) {
             return null;
         }
 
