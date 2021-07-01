@@ -5,6 +5,7 @@ public class BankAccount {
     private String accountNumber;
     private String name;
     private Double balance;
+    private String accountBlacklisted;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -28,5 +29,13 @@ public class BankAccount {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+    public String getAccountBlacklisted() {
+        return accountBlacklisted;
+    }
+
+    public void setAccountBlacklisted(String accountBlacklisted) {
+        this.accountBlacklisted = accountBlacklisted;
     }
 }

@@ -4,10 +4,17 @@ public class MoneyTransferService {
 
     private DatabaseRepository repository;
 
-    public void transferMoney(String fromNumber, String toNumber) {
+    public SendMoneyTransaction transferMoney(String fromNumber, String toNumber) {
 
         BankAccount from = repository.getAccountByName(fromNumber);
+        if(from == null || from.getAccountBlacklisted().equals("true")) {
+            return null;
+        }
+
         BankAccount to = repository.getAccountByName(fromNumber);
+        if(to == null || to.getAccountBlacklisted().equals("true")) {
+            return null;
+        }
 
         SendMoneyTransaction transaction = new SendMoneyTransaction();
         transaction.setFrom(from);
@@ -18,6 +25,8 @@ public class MoneyTransferService {
 
         from.setBalance(from.getBalance() - total);
         to.setBalance(to.getBalance() + transaction.getAmount());
+
+        return transaction;
     }
 
     private Double calculateFee(SendMoneyTransaction transaction) {
