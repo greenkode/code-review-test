@@ -22,21 +22,23 @@ public class MoneyTransferService {
         transaction.setFee(calculateFee(transaction));
 
         double total = transaction.getAmount() + transaction.getFee();
+        repository.save(from);
 
         from.setBalance(from.getBalance() - total);
         to.setBalance(to.getBalance() + transaction.getAmount());
+        repository.save(to);
 
         return transaction;
     }
 
     private Double calculateFee(SendMoneyTransaction transaction) {
-        double fee = 0.0;
+        Double fee = null;
         if(transaction.getAmount() == null) {
             return fee;
         } else if (transaction.getAmount() > 100_000) {
-            fee = 50;
+            fee = 50.0;
         } else if (transaction.getAmount() > 500_000) {
-            fee = 100;
+            fee = 100.0;
         }
         return fee;
     }
