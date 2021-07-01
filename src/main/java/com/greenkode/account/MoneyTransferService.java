@@ -1,5 +1,7 @@
 package com.greenkode.account;
 
+import java.time.Instant;
+
 public class MoneyTransferService {
 
     private static final String KYC1 = "KYC1";
@@ -24,6 +26,7 @@ public class MoneyTransferService {
         transaction.setFrom(from);
         transaction.setTo(to);
         transaction.setFee(calculateFee(transaction));
+        transaction.setCreated(Instant.now());
 
         double total = transaction.getAmount() + transaction.getFee();
         repository.save(from);
@@ -47,7 +50,6 @@ public class MoneyTransferService {
                 return null;
             }
         }
-
 
         from.setBalance(from.getBalance() - total);
         to.setBalance(to.getBalance() + transaction.getAmount());

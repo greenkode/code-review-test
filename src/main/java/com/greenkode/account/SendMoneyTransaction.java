@@ -1,11 +1,14 @@
 package com.greenkode.account;
 
+import java.time.Instant;
+
 public class SendMoneyTransaction {
 
     private BankAccount from;
     private BankAccount to;
     private Double amount;
     private Double fee;
+    private Instant created;
 
     public BankAccount getFrom() {
         return from;
@@ -37,5 +40,13 @@ public class SendMoneyTransaction {
 
     public void setFee(Double fee) {
         this.fee = fee;
+    }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public void setCreated(Instant created) {
+        this.created = created;
     }
 }
