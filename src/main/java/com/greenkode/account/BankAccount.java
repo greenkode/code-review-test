@@ -6,6 +6,7 @@ public class BankAccount {
     private String name;
     private Double balance;
     private String accountBlacklisted;
+    private String kycLevel;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -37,5 +38,13 @@ public class BankAccount {
 
     public void setAccountBlacklisted(String accountBlacklisted) {
         this.accountBlacklisted = accountBlacklisted;
+    }
+
+    public String getKycLevel() {
+        return kycLevel;
+    }
+
+    public void setKycLevel(String kycLevel) {
+        this.kycLevel = kycLevel;
     }
 }

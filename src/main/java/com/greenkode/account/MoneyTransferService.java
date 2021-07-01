@@ -2,6 +2,10 @@ package com.greenkode.account;
 
 public class MoneyTransferService {
 
+    private static final String KYC1 = "KYC1";
+    private static final String KYC2 = "KYC2";
+    private static final String KYC3 = "KYC3";
+
     private DatabaseRepository repository;
 
     public SendMoneyTransaction transferMoney(String fromNumber, String toNumber) {
@@ -23,6 +27,27 @@ public class MoneyTransferService {
 
         double total = transaction.getAmount() + transaction.getFee();
         repository.save(from);
+
+        if(from.getKycLevel() == KYC1) {
+            if(total > 30_000) {
+                return null;
+            }
+        } else if (from.getKycLevel() == KYC2) {
+            if(total > 100_000) {
+                return null;
+            }
+        }
+
+        if(to.getKycLevel() == KYC1) {
+            if(transaction.getAmount() > 30_000) {
+                return null;
+            }
+        } else if (to.getKycLevel() == KYC2) {
+            if(transaction.getAmount() > 100_000) {
+                return null;
+            }
+        }
+
 
         from.setBalance(from.getBalance() - total);
         to.setBalance(to.getBalance() + transaction.getAmount());
